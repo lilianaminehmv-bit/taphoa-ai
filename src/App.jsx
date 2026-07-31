@@ -55,7 +55,7 @@ function App() {
     <div className="store">
 
       <header className="header">
-        <h1>🛒 Tạp Hóa AI</h1>
+        <h1>🛒 Tạp Hóa Ngọc Ấn</h1>
         <p>Tìm sản phẩm - Xem giá nhanh</p>
       </header>
 
