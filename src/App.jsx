@@ -30,41 +30,62 @@ function App() {
 
 
 
+
   useEffect(() => {
 
 
-    Papa.parse(
-
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIsI6pV4OWgacgABmvi8Qsbv2gaw0LTQF37-TJcbADqE6Zg7fp7RhRb95Y-gBLt2rjLA_hsNkHD60H/pub?gid=0&single=true&output=csv",
-
-      {
-
-        download:true,
-
-        header:true,
+    const sheetURL =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIsI6pV4OWgacgABmvi8Qsbv2gaw0LTQF37-TJcbADqE6Zg7fp7RhRb95Y-gBLt2rjLA_hsNkHD60H/pub?gid=0&single=true&output=csv";
 
 
-        complete:(result)=>{
+
+    Papa.parse(sheetURL, {
 
 
-          const data = result.data.filter(
+      download:true,
 
-            item => item.name && item.price
-
-          );
+      header:true,
 
 
-          setProducts(data);
+
+      complete:(result)=>{
 
 
-        }
+        console.log(result.data);
+
+
+
+        const data = result.data.filter(item =>
+
+          item.name && item.price
+
+        );
+
+
+
+        setProducts(data);
+
+
+      },
+
+
+      error:(error)=>{
+
+
+        console.log("Lỗi tải dữ liệu:",error);
+
 
       }
 
-    );
+
+    });
+
 
 
   },[]);
+
+
+
 
 
 
@@ -91,28 +112,25 @@ function App() {
 
 
 
-  const result = products.filter((item)=>{
+
+  const result = products.filter(item=>{
 
 
     const keyword = removeVietnameseTones(search);
 
 
-    const name = removeVietnameseTones(
 
-      item.name
-
-    );
+    const name = removeVietnameseTones(item.name);
 
 
-    const cat = removeVietnameseTones(
 
-      item.category
+    const cat = removeVietnameseTones(item.category);
 
-    );
 
 
 
     const matchSearch =
+
 
       name.includes(keyword)
 
@@ -123,13 +141,18 @@ function App() {
 
 
 
+
+
     const matchCategory =
+
 
       category === "Tất cả"
 
       ||
 
       item.category === category;
+
+
 
 
 
@@ -146,11 +169,15 @@ function App() {
 
 
 
+
+
   const displayProducts = showAll
 
     ? result
 
-    : result.slice(0,2);
+    : result.slice(0,3);
+
+
 
 
 
@@ -162,6 +189,9 @@ function App() {
 
 
     <div className="store">
+
+
+
 
 
 
@@ -188,22 +218,20 @@ function App() {
 
 
 
-      <input
 
+
+      <input
 
         className="search"
 
-
         placeholder="🔍 Tìm sản phẩm..."
-
 
         value={search}
 
-
         onChange={(e)=>setSearch(e.target.value)}
 
-
       />
+
 
 
 
@@ -221,26 +249,19 @@ function App() {
 
             <button
 
-
               key={index}
 
-
               onClick={()=>{
-
 
                 setCategory(item);
 
                 setShowAll(false);
 
-
               }}
-
 
             >
 
-
               {item}
-
 
             </button>
 
@@ -251,6 +272,8 @@ function App() {
 
 
       </div>
+
+
 
 
 
@@ -269,8 +292,9 @@ function App() {
 
 
 
-      <div className="products">
 
+
+      <div className="products">
 
 
         {
@@ -282,14 +306,23 @@ function App() {
             <div className="card" key={index}>
 
 
+              {
 
-              <img
 
-                src={item.image}
+                item.image &&
 
-                alt={item.name}
 
-              />
+                <img
+
+                  src={item.image}
+
+                  alt={item.name}
+
+                />
+
+
+              }
+
 
 
 
@@ -301,11 +334,14 @@ function App() {
 
 
 
+
+
               <span className="category-text">
 
                 {item.category}
 
               </span>
+
 
 
 
@@ -324,6 +360,7 @@ function App() {
 
           ))
 
+
         }
 
 
@@ -336,20 +373,19 @@ function App() {
 
 
 
+
+
       {
 
-        result.length > 2 &&
 
+        result.length > 3 &&
 
 
         <button
 
-
           className="more-btn"
 
-
           onClick={()=>setShowAll(!showAll)}
-
 
         >
 
@@ -370,6 +406,7 @@ function App() {
           }
 
 
+
         </button>
 
 
@@ -386,9 +423,7 @@ function App() {
       <footer className="footer">
 
 
-
         <div className="contact-icons">
-
 
 
           <a href="tel:0829420098">
@@ -417,7 +452,6 @@ function App() {
 
 
 
-
           <a
 
             href="https://maps.app.goo.gl/ZMPoTMQB5qw9DBg8A"
@@ -440,13 +474,11 @@ function App() {
 
 
 
-
         <p>
 
           📍 ĐT615, Chiên Đàn, Đà Nẵng, Việt Nam
 
         </p>
-
 
 
 
@@ -459,6 +491,7 @@ function App() {
 
 
       </footer>
+
 
 
 
