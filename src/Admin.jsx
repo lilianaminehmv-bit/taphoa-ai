@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
+import imageCompression from "browser-image-compression";
 const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 function removeVietnameseTones(str = "") {
@@ -91,10 +92,18 @@ async function loadProducts(){
     return null;
   }
 
-  const formData = new FormData();
+  const options = {
+  maxSizeMB: 0.4,
+  maxWidthOrHeight: 1200,
+  useWebWorker: true,
+};
 
-  formData.append("file", image);
-  formData.append("upload_preset", uploadPreset);
+const compressedFile = await imageCompression(image, options);
+
+const formData = new FormData();
+
+formData.append("file", compressedFile);
+formData.append("upload_preset", uploadPreset);
 
 
   const res = await fetch(
