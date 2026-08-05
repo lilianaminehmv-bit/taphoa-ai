@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Papa from "papaparse";
+import { supabase } from "./supabase";
+import Admin from "./Admin";
 import "./App.css";
 
 
@@ -17,6 +18,10 @@ function removeVietnameseTones(str = "") {
 
 
 function App() {
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [password, setPassword] = useState("");
+  const [reload, setReload] = useState(false);
 
 
   const [products, setProducts] = useState([]);
@@ -32,58 +37,23 @@ function App() {
 
 
   useEffect(() => {
+  async function loadProducts() {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("id", { ascending: true });
 
+    if (error) {
+      console.log("Lỗi tải dữ liệu:", error);
+      return;
+    }
 
-    const sheetURL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIsI6pV4OWgacgABmvi8Qsbv2gaw0LTQF37-TJcbADqE6Zg7fp7RhRb95Y-gBLt2rjLA_hsNkHD60H/pub?gid=0&single=true&output=csv";
+   console.log("Dữ liệu Supabase:", data);
+setProducts(data);
+  }
 
-
-
-    Papa.parse(sheetURL, {
-
-
-      download:true,
-
-      header:true,
-
-
-
-      complete:(result)=>{
-
-
-        console.log(result.data);
-
-
-
-        const data = result.data.filter(item =>
-
-          item.name && item.price
-
-        );
-
-
-
-        setProducts(data);
-
-
-      },
-
-
-      error:(error)=>{
-
-
-        console.log("Lỗi tải dữ liệu:",error);
-
-
-      }
-
-
-    });
-
-
-
-  },[]);
-
+  loadProducts();
+}, [reload]);
 
 
 
@@ -185,10 +155,48 @@ function App() {
 
 
 
+    function checkAdminPassword(){
+
+  if(password === "123456"){
+
+    setShowAdmin(true);
+    setShowLogin(false);
+    setPassword("");
+
+  }else{
+
+    alert("Sai mật khẩu");
+
+  }
+
+}
   return (
+  <>
+   <button 
+  className="admin-btn"
+  onClick={() => {
+
+    if(showAdmin){
+
+      setShowAdmin(false);
+
+    }else{
+
+      setShowLogin(true);
+
+    }
+
+  }}
+>
+  ⚙️ Quản lý
+</button>
 
 
     <div className="store">
+
+
+
+    
 
 
 
@@ -309,17 +317,11 @@ function App() {
               {
 
 
-                item.image &&
-
-
-                <img
-
-                  src={item.image}
-
-                  alt={item.name}
-
-                />
-
+                item.image_url &&
+<img
+  src={item.image_url}
+  alt={item.name}
+/>
 
               }
 
@@ -497,9 +499,40 @@ function App() {
 
 
 
-    </div>
+        </div>
 
+{showLogin && (
+  <div className="admin-login">
 
+    <input
+      type="password"
+      placeholder="Nhập mật khẩu quản lý"
+      value={password}
+      onChange={(e)=>setPassword(e.target.value)}
+    />
+
+    <button onClick={checkAdminPassword}>
+      Đăng nhập
+    </button>
+
+    <button
+      onClick={()=>{
+        setShowLogin(false);
+        setPassword("");
+      }}
+    >
+      Hủy
+    </button>
+
+  </div>
+)}
+    {showAdmin && (
+  <div className="admin-popup">
+    <Admin setReload={setReload} />
+  </div>
+)}
+
+  </>
   );
 
 
