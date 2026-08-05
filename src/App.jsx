@@ -25,6 +25,7 @@ function App() {
 
 
   const [products, setProducts] = useState([]);
+  const [previewImage, setPreviewImage] = useState("");
 
   const [search, setSearch] = useState("");
 
@@ -311,19 +312,24 @@ setProducts(data);
 
 
 
-            <div className="card" key={index}>
-
+<div
+  className="card"
+  key={index}
+  onClick={() => console.log("Click vào card")}
+>
 
               {
-
-
-                item.image_url &&
-<img
+  item.image_url &&
+  <img
   src={item.image_url}
   alt={item.name}
+  onClick={() => {
+    console.log("Đã bấm ảnh");
+    setPreviewImage(item.image_url);
+  }}
+  style={{ cursor: "pointer" }}
 />
-
-              }
+}
 
 
 
@@ -531,6 +537,28 @@ setProducts(data);
     <Admin setReload={setReload} />
   </div>
 )}
+{previewImage && (
+  <div
+    className="image-preview"
+    onClick={() => setPreviewImage("")}
+  >
+
+    <button
+      className="close-preview"
+      onClick={() => setPreviewImage("")}
+    >
+      ✕
+    </button>
+
+    <img
+      src={previewImage}
+      alt=""
+      onClick={(e) => e.stopPropagation()}
+    />
+
+  </div>
+)}
+
 
   </>
   );
