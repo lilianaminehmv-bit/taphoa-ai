@@ -558,7 +558,15 @@ setProducts(data);
 
 
 export default App;
-.header {
-  margin-top: 80px;
-  text-align: center;
+
+/* Đẩy phần tiêu đề xuống trên điện thoại */
+@media (max-width: 600px) {
+  .store {
+    padding-top: 180px;
+  }
+
+  .header {
+    margin-top: 0;
+    text-align: center;
+  }
 }
