@@ -558,3 +558,7 @@ setProducts(data);
 
 
 export default App;
+.header {
+  margin-top: 80px;
+  text-align: center;
+}
