@@ -206,25 +206,21 @@ setProducts(data);
 
 
 
-      <header className="header">
+<header className="header">
 
+  <div className="store-logo">
+    🛒
+  </div>
 
-        <h1>
+  <h1>
+    Tạp Hóa Ngọc Ấn
+  </h1>
 
-          🛒 Tạp Hóa Ngọc Ấn
+  <p>
+    Giá có thể thay đổi theo thời điểm
+  </p>
 
-        </h1>
-
-
-        <p>
-
-          Giá có thể thay đổi theo thời điểm
-
-        </p>
-
-
-      </header>
-
+</header>
 
 
 
@@ -559,14 +555,3 @@ setProducts(data);
 
 export default App;
 
-/* Đẩy phần tiêu đề xuống trên điện thoại */
-@media (max-width: 600px) {
-  .store {
-    padding-top: 180px;
-  }
-
-  .header {
-    margin-top: 0;
-    text-align: center;
-  }
-}
