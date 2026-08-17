@@ -869,16 +869,42 @@ body > * {
 }
 
 @media (max-width: 600px) {
+
+  .store {
+    width: 100%;
+    padding: 135px 8px 8px;
+  }
+
+  .header {
+    position: relative;
+    z-index: 2;
+    margin-top: 0 !important;
+    padding: 4px 8px 3px;
+    text-align: center;
+  }
+
   .store-logo {
     font-size: 38px;
-    margin-bottom: 5px;
+    line-height: 1;
+    margin-bottom: 2px;
   }
 
   .header h1 {
     font-size: 20px;
+    line-height: 1.1;
+    margin: 0 0 2px;
   }
 
   .header p {
     font-size: 13px;
+    line-height: 1.1;
+    margin: 0;
   }
+
+  .search {
+    height: 44px;
+    font-size: 15px;
+  }
+
+  /* giữ nguyên các phần còn lại */
 }
