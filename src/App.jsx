@@ -73,6 +73,8 @@ setProducts(data);
     "Đồ gia dụng",
 
     "Đồ điện",
+     
+    "Đồ cúng",
 
     "Khác"
 
@@ -146,7 +148,7 @@ setProducts(data);
 
     ? result
 
-    : result.slice(0,3);
+    : result.slice(0,2);
 
 
 
@@ -384,41 +386,28 @@ setProducts(data);
 
 
       {
-
-
-        result.length > 3 &&
-
-
+  result.length > 2 && (
+    <>
+      {!showAll && (
         <button
-
           className="more-btn"
-
-          onClick={()=>setShowAll(!showAll)}
-
+          onClick={() => setShowAll(true)}
         >
-
-
-          {
-
-            showAll
-
-            ?
-
-            "Thu gọn"
-
-            :
-
-            "Xem thêm sản phẩm"
-
-
-          }
-
-
-
+          Xem thêm sản phẩm
         </button>
+      )}
 
-
-      }
+      {showAll && (
+        <button
+          className="collapse-btn"
+          onClick={() => setShowAll(false)}
+        >
+          Thu gọn
+        </button>
+      )}
+    </>
+  )
+}
 
 
 

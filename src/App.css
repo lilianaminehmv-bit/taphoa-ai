@@ -282,14 +282,27 @@ body {
 
 }
 .collapse-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 20px !important;
+  transform: translateX(-50%) !important;
+
+  width: calc(100% - 40px) !important;
   max-width: 500px;
-  z-index: 9999;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+
+  background: #2E8B57 !important;
+  color: white !important;
+  font-weight: bold;
+  font-size: 16px;
+
+  z-index: 999999 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
 }
 
 
