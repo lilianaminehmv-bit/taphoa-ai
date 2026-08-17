@@ -80,17 +80,34 @@ body > * {
 ======================================== */
 
 .header {
-  background: #2E8B57;
-  color: white;
+  background: transparent;
+  color: #2E8B57;
 
-  padding: 14px 10px;
-
-  border-radius: 14px;
+  padding: 10px 10px 8px;
 
   text-align: center;
 
   position: relative;
   z-index: 2;
+}
+
+.header h1 {
+  margin: 0 0 5px;
+
+  font-size: 22px;
+  line-height: 1.2;
+
+  color: #2E8B57;
+
+  font-weight: bold;
+}
+
+.header p {
+  margin: 0;
+
+  font-size: 14px;
+
+  color: #2E8B57;
 }
 
 .header h1 {
@@ -841,6 +858,26 @@ body > * {
   }
 
   .admin-product {
+    font-size: 13px;
+  }
+}
+.store-logo {
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+  .store-logo {
+    font-size: 38px;
+    margin-bottom: 5px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .header p {
     font-size: 13px;
   }
 }
