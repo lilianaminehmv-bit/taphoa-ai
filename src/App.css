@@ -38,7 +38,9 @@ body::before {
   background-image: url("/cat.png");
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: 240px auto;
+
+  /* Phóng hình mèo theo chiều ngang điện thoại */
+  background-size: 100% auto;
 
   opacity: 0.25;
 
@@ -46,7 +48,6 @@ body::before {
 
   z-index: 0;
 }
-
 
 /* ========================================
    NỘI DUNG WEBSITE
@@ -757,12 +758,10 @@ body > * {
     tiêu đề KHÔNG đè lên hình mèo.
   */
 
-  .store {
-    width: 100%;
-
-    padding: 230px 8px 8px;
-  }
-
+.store {
+  width: 100%;
+  padding: 180px 8px 8px;
+}
   .header {
     position: relative;
 
