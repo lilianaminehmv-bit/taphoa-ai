@@ -146,7 +146,7 @@ body {
 
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
 
   gap:6px;
 
@@ -281,6 +281,16 @@ body {
   font-weight:bold;
 
 }
+.collapse-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 500px;
+  z-index: 9999;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
 
 
 
@@ -371,7 +381,7 @@ body {
 
 .card {
 
-  min-height:185px;
+  min-height:205px;
 
   padding:4px;
 
@@ -795,5 +805,72 @@ body {
   font-size:14px;
 
 }
+
+}
+/* Xem ảnh lớn */
+
+.image-preview{
+
+  position:fixed;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  background:rgba(0,0,0,.85);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:99999;
+
+}
+
+.image-preview img{
+
+  max-width:90%;
+
+  max-height:85%;
+
+  border-radius:12px;
+
+  background:white;
+
+  object-fit:contain;
+
+}
+
+.close-preview{
+
+  position:absolute;
+
+  top:20px;
+
+  right:20px;
+
+  width:42px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:white;
+
+  color:black;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  font-weight:bold;
 
 }
